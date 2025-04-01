@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "956331379494",
+    "project_id": "t-ecommerce-app-adf1d",
+    "storage_bucket": "t-ecommerce-app-adf1d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:956331379494:android:44129f6020c2baa9b48fe7",
+        "android_client_info": {
+          "package_name": "com.example.tapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "956331379494-um0tou8ml9t8ifa2p10ut0ouvpg9952l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwgXEyOrSuaiZo1TCSV4NiwKg3KA9dMNo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "956331379494-um0tou8ml9t8ifa2p10ut0ouvpg9952l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "956331379494-t2dj8bgrnvvfgravg3ta1ksjsfpmo1m9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

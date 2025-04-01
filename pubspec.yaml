@@ -1,0 +1,138 @@
+name: tapp
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+environment:
+  sdk: ^3.6.0
+
+#-------------------- PACKAGES -----------------#
+dependencies:
+  flutter:
+    sdk: flutter
+
+# Utility packages
+
+  cupertino_icons: ^1.0.8
+  flutter_lints: ^5.0.0
+  iconsax:
+  intl:
+  logger:
+  flutter_bloc:
+  http:
+  flutter_native_splash:
+  smooth_page_indicator:
+  carousel_slider:
+  readmore:
+  flutter_rating_bar: ^4.0.1
+  fluttertoast:
+  get_it: ^8.0.3
+  dartz:
+  shared_preferences:
+  equatable: ^2.0.7
+
+  #---- Flutter Fire -------
+  firebase_core: ^3.12.1
+  firebase_auth: ^5.5.1
+  cloud_firestore: ^5.6.5
+  google_sign_in: ^6.3.0
+  firebase_storage:
+
+
+
+
+
+
+# ------------------ PACKAGE END ----------------#
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+
+
+
+
+
+flutter:
+
+
+#----------------------- LOCAL ASSETS -----------------#
+
+  assets:
+    - assets/logos/
+    - assets/icons/
+    - assets/videos/
+    - assets/images/on_boarding_images/
+    - assets/images/animations/
+    - assets/icons/categories/
+    - assets/images/banners/
+    - assets/images/products/
+    - assets/images/content/
+    - assets/images/reviews/
+    - assets/icons/payment_methods/
+
+#----------------------- FONTS -----------------#
+
+  fonts:
+    - family: Popins
+      fonts:
+        - asset: assets/fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+
+        - asset: assets/fonts/Poppins-Italic.ttf
+          style: italic
+
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+
+        - asset: assets/fonts/Poppins-MediumItalic.ttf
+          style: italic
+          weight: 500
+
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 800
+
+
+
+
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+
+
+  uses-material-design: true
+
+  
+  
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
