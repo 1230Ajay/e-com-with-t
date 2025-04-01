@@ -82,7 +82,7 @@ class SignInForm extends StatelessWidget {
 
                   SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton(
+                      child: OutlinedButton(
                           onPressed: () {
                             Navigator.pushNamed(context, AppRoutes.SIGNUP);
                           },

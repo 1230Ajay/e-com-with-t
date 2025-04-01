@@ -15,38 +15,35 @@ import 'sign_up_state.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(const SignUpState());
 
-  Timer? _emailVerificationTimer; // Store timer reference
+  Timer? emailVerificationTimer; // Store timer reference
 
   void updateFirstName(String value) {
     emit(state.copyWith(firstName: value));
-    // _updateField('firstName', value, _validateName(value));
+
   }
 
 
 
   void updateLastName(String value) {
     emit(state.copyWith(lastName: value));
-    // _updateField('lastName', value, _validateName(value));
   }
 
   void updateUsername(String value) {
     emit(state.copyWith(username: value));
-    // _updateField('username', value, _validateUsername(value));
+
   }
 
   void updateEmail(String value) {
     emit(state.copyWith(email: value));
-    // _updateField('email', value, _validateEmail(value));
+
   }
 
   void updatePhoneNo(String value) {
     emit(state.copyWith(phoneNo: value));
-    // _updateField('phoneNo', value, _validatePhoneNo(value));
   }
 
   void updatePassword(String value) {
     emit(state.copyWith(password: value));
-    // _updateField('password', value, _validatePassword(value));
   }
 
   void togglePasswordVisibility() {
@@ -110,6 +107,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         return Left(e);
       }, // Handle error case
           (userCredential) {
+            emit(state.copyWith(signUpFormState: SignUpFormState.SUCCESS));
             AppToast.showToast("User has created succesfully",type: ToastType.success);
            return Right(userCredential);
           }, // Handle success case
@@ -130,10 +128,10 @@ class SignUpCubit extends Cubit<SignUpState> {
        ));
 
        // Cancel the previous timer if it exists
-       _emailVerificationTimer?.cancel();
+       emailVerificationTimer?.cancel();
 
        // Start a new timer
-       _emailVerificationTimer = Timer.periodic(Duration(seconds: 1), (timer) async {
+       emailVerificationTimer = Timer.periodic(Duration(seconds: 1), (timer) async {
          if (state.emailVerificationTimeout == 0) {
            emit(state.copyWith(emailVerificationState: EmailVerificationState.TIMEOUT));
            timer.cancel();
@@ -142,7 +140,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
            bool isEmailVerified =  await ServiceLocator.instance.getIt<EmailVerificationStatusUseCase>().call(params: null);
            if(isEmailVerified){
-             _emailVerificationTimer?.cancel();
+             emailVerificationTimer?.cancel();
              emit(state.copyWith(emailVerificationState: EmailVerificationState.SUCCESS));
            }
          }
@@ -150,14 +148,6 @@ class SignUpCubit extends Cubit<SignUpState> {
      },
    );
   }
-  // void _updateField(String field, String value, String? error) {
-  //   final newValidationErrors = {...state.validationErrors, field: error};
-  //   emit(state.copyWith(validationErrors: newValidationErrors, isFormValid: _isFormValid(newValidationErrors)));
-  // }
-
-  // bool _isFormValid(Map<String, String?> errors) {
-  //   return errors.values.every((error) => error == null);
-  // }
 
   String? _validateName(String value) => value.isNotEmpty ? null : "Name cannot be empty";
   String? _validateUsername(String value) => value.length >= 4 ? null : "Username must be at least 4 characters";
@@ -167,7 +157,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   @override
   Future<void> close() {
-    _emailVerificationTimer?.cancel(); // Ensure timer is canceled when Cubit is closed
+    emailVerificationTimer?.cancel();
     return super.close();
   }
 

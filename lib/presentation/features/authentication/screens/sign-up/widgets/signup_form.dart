@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:tapp/comman/widgets/popups/app_toast.dart';
 import 'package:tapp/core/utils/constants/app_routes.dart';
 import 'package:tapp/presentation/features/authentication/screens/sign-up/cubit/sign_up_cubit.dart';
 import 'package:tapp/presentation/features/authentication/screens/sign-up/cubit/sign_up_state.dart';
@@ -19,7 +18,13 @@ class SignUpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<SignUpCubit>();
-    return BlocBuilder<SignUpCubit, SignUpState>(
+    return BlocListener< SignUpCubit, SignUpState>(
+  listener: (context, state) {
+    if(state.signUpFormState == SignUpFormState.SUCCESS){
+      Navigator.of(context).pushNamed(AppRoutes.VERIFY_EMAIL);
+    }
+  },
+  child: BlocBuilder<SignUpCubit, SignUpState>(
       builder: (context, state) {
         return Form(
             child: Column(
@@ -151,10 +156,7 @@ class SignUpForm extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () async {
-                     final result =  await cubit.submitSignUpForm();
-                     result.fold((error){}, (_){
-                       Navigator.of(context).pushNamed(AppRoutes.VERIFY_EMAIL);
-                     });
+                     await cubit.submitSignUpForm();
                     },
                     child: state.signUpFormState == SignUpFormState.INITIAL ? Text( TTexts.createAccount):SizedBox(
                       height: AppSizes.iconSm,
@@ -169,6 +171,7 @@ class SignUpForm extends StatelessWidget {
           ],
         ));
       },
-    );
+    ),
+);
   }
 }

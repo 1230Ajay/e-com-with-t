@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tapp/comman/widgets/success_screen/success_screen.dart';
 import 'package:tapp/core/utils/constants/app_routes.dart';
+import 'package:tapp/core/utils/constants/app_storage_constants.dart';
 import 'package:tapp/core/utils/constants/images.dart';
 import 'package:tapp/core/utils/constants/sizes.dart';
 import 'package:tapp/core/utils/constants/texts.dart';
+import 'package:tapp/data/local/storage_service.dart';
 import 'package:tapp/presentation/features/authentication/cubit/auth_cubit.dart';
 import 'package:tapp/presentation/features/authentication/screens/sign-up/cubit/sign_up_cubit.dart';
 import 'package:tapp/presentation/features/authentication/screens/sign-up/cubit/sign_up_state.dart';
@@ -35,10 +37,11 @@ class _VerifyEmailState extends State<VerifyEmail> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              context.read<AuthCubit>().signOut();
+              context.read<SignUpCubit>().emailVerificationTimer?.cancel();
+              Navigator.of(context).pushNamed(AppRoutes.SIGNIN);
             },
-            icon:
-                Icon(CupertinoIcons.clear), // Replace with any icon you prefer
+            icon: Icon(CupertinoIcons.clear), // Replace with any icon you prefer
           )
         ],
       ),

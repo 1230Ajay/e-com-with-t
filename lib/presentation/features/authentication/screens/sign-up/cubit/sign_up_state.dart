@@ -10,6 +10,7 @@ enum EmailVerificationState {
 enum SignUpFormState {
   INITIAL,
   SUBMITTING,
+  SUCCESS
 }
 
 class SignUpState extends Equatable {
